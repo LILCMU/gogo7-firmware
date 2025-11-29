@@ -1,0 +1,14 @@
+name: Trigger Installer Update
+on:
+  release:
+    types: [published, unpublished, created, edited, deleted, prereleased, released]
+jobs:
+  trigger-update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Installer Update
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.TOKEN }}
+          repository: LILCMU/gogo7-firmware-installer
+          event-type: firmware-release

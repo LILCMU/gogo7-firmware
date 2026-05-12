@@ -1,4 +1,4 @@
-name: Trigger Installer Update
+name: Trigger Installer Update & Code Assets
 on:
   release:
     types: [published, unpublished, created, edited, deleted, prereleased, released]
@@ -12,3 +12,9 @@ jobs:
           token: ${{ secrets.TOKEN }}
           repository: LILCMU/gogo7-firmware-installer
           event-type: firmware-release
+      - name: Trigger Code Assets
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.TOKEN }}
+          repository: LILCMU/gogo-code-assets
+          event-type: fetch-gogo7-firmware
